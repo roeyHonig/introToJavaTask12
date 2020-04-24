@@ -26,27 +26,27 @@ public class Time1 {
     }
 
     public Time1 (Time1 t){
-        this(t.get_hour(), t.get_minute());
+        this(t.getHour(), t.getMinute());
     }
 
     // getters
-    public int get_hour() {
+    public int getHour() {
         return _hour;
     }
 
-    public int get_minute() {
+    public int getMinute() {
         return _minute;
     }
 
     // setters
-    public void set_hour(int num) {
+    public void setHour(int num) {
         if (num < HOUR_MIN_VALUE || num > HOUR_MAX_VALUE) {
             return;
         }
         _hour = num;
     }
 
-    public void set_minute(int num) {
+    public void setMinute(int num) {
         if (num < MINUTE_MIN_VALUE || num > MINUTE_MAX_VALUE) {
             return;
         }
@@ -63,7 +63,7 @@ public class Time1 {
 
     public boolean equals(Time1 other) {
         if (this == other) return true;
-        return _hour == other.get_hour() && _minute == other.get_minute();
+        return _hour == other.getHour() && _minute == other.getMinute();
     }
 
     public boolean before (Time1 other){
