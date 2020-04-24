@@ -26,7 +26,7 @@ public class Time2 {
     }
 
     public Time2 (Time2 t){
-        this(t.getHour(), t.getMinute());
+        _minFromMid = t.minFromMidnight();
     }
 
     // getters

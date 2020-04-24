@@ -26,7 +26,8 @@ public class Time1 {
     }
 
     public Time1 (Time1 t){
-        this(t.getHour(), t.getMinute());
+        _hour = t.getHour();
+        _minute = t.getMinute();
     }
 
     // getters
