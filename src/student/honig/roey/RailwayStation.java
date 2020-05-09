@@ -18,10 +18,12 @@ public class RailwayStation {
         int firstAvailableSlot = 0;
         for (Train train: _station
              ) {
-            if (f.equals(train)) {
+            if (train != null && f.equals(train)) {
                 return false;
             }
-            firstAvailableSlot++;
+        }
+        if (_noOfTrs != 0) {
+            firstAvailableSlot = _noOfTrs;
         }
         _station[firstAvailableSlot] = new Train(f);
         _noOfTrs++;
@@ -33,7 +35,7 @@ public class RailwayStation {
             return false;
         }
         for (int i = 0; i <  _noOfTrs; i++) {
-            if (f.equals(_station[i])) {
+            if (_station[i] != null && f.equals(_station[i])) {
                 _station[i] = _station[_noOfTrs-1];
                 _station[_noOfTrs-1] = null;
                 _noOfTrs--;
@@ -50,7 +52,7 @@ public class RailwayStation {
         Time1 earliestDeparture = null;
         for (Train train: _station
         ) {
-            if (train.getDestination().equals(place)) {
+            if (train != null && train.getDestination().equals(place)) {
                 if (earliestDeparture != null) {
                     earliestDeparture = earliestDeparture.before(train.getDeparture()) ? earliestDeparture : train.getDeparture();
                 } else {
@@ -68,6 +70,9 @@ public class RailwayStation {
         String stringToReturn = "The trains today are:\n";
         for (Train train: _station
         ) {
+            if (train == null) {
+                break;
+            }
             stringToReturn += "Train to ";
             stringToReturn += train.getDestination();
             stringToReturn += " departs at "+train.getDeparture()+". "+(train.isFull()? "Train is full\n":"Train is not full\n");
@@ -79,7 +84,7 @@ public class RailwayStation {
         int counter = 0;
         for (Train train: _station
         ) {
-            if (train.isFull()) {
+            if (train != null && train.isFull()) {
                 counter++;
             }
         }
@@ -94,10 +99,12 @@ public class RailwayStation {
         int mostPopularDestinationTotalNumberOfTrains = 1;
         for (Train train: _station
         ) {
-            int thisTrainDestinationTotalNumberOfTrains = getTotalTrainsInStationWithDestination(train.getDestination());
-            if (thisTrainDestinationTotalNumberOfTrains > mostPopularDestinationTotalNumberOfTrains) {
-                mostPopularDestinationTotalNumberOfTrains = thisTrainDestinationTotalNumberOfTrains;
-                mostPopularDestination = train.getDestination();
+            if (train != null) {
+                int thisTrainDestinationTotalNumberOfTrains = getTotalTrainsInStationWithDestination(train.getDestination());
+                if (thisTrainDestinationTotalNumberOfTrains > mostPopularDestinationTotalNumberOfTrains) {
+                    mostPopularDestinationTotalNumberOfTrains = thisTrainDestinationTotalNumberOfTrains;
+                    mostPopularDestination = train.getDestination();
+                }
             }
         }
         return mostPopularDestination;
@@ -110,7 +117,7 @@ public class RailwayStation {
         Train mostExpensiveTicketTrain = _station[0];
         for (Train train: _station
         ) {
-            if (train.getPrice() > mostExpensiveTicketTrain.getPrice()) {
+            if (train != null && train.getPrice() > mostExpensiveTicketTrain.getPrice()) {
                 mostExpensiveTicketTrain = train;
             }
         }
@@ -124,7 +131,7 @@ public class RailwayStation {
         Train longestDurationTrain = _station[0];
         for (Train train: _station
         ) {
-            if (train.getDuration() > longestDurationTrain.getDuration()) {
+            if (train != null && train.getDuration() > longestDurationTrain.getDuration()) {
                 longestDurationTrain = train;
             }
         }
@@ -135,7 +142,7 @@ public class RailwayStation {
         int counter = 0;
         for (Train train: _station
              ) {
-            if (train.getDestination().equals(place)){
+            if (train != null && train.getDestination().equals(place)){
                 counter++;
             }
         }
